@@ -12,7 +12,7 @@ Flight::group('/', function () {
         Flight::route('/new_edit(/@student_no)', function ($student_no) {
             Flight::render('students_new_edit', ['title' => "Add or edit student", "student_no" => $student_no], 'saturs');
         }, false, 'students_new_edit');
-    });
+    },[function() { guard::is_staff(); }]);
     Flight::group('grades', function () {
         Flight::route('/edit_grade(/@module_code/@student_no)', function ($module_code, $student_no) {
             Flight::render('grades_edit_add', ['title' => "Add or edit grade", "module_code" => $module_code, "student_no" => $student_no], 'saturs');
@@ -20,7 +20,7 @@ Flight::group('/', function () {
         Flight::route('/all_grades', function () {
             Flight::render('students_grades_overview', ['title' => "All students and grades"], 'saturs');
         }, false, 'students_grades_overview');
-    });
+    },[function() { guard::is_staff(); }]);
 
     Flight::group('modules', function () {
         Flight::route('/all', function () {
@@ -30,15 +30,15 @@ Flight::group('/', function () {
         Flight::route('/new_edit(/@module_code)', function ($module_code) {
             Flight::render('modules_new_edit', ['title' => "Add or edit module", "module_code" => $module_code], 'saturs');
         }, false, 'modules_new_edit');
-    });
-    Flight::group('staff_members', function () {
-        Flight::route('/all_staff_members', function () {
+    },[function() { guard::is_staff(); }]);
+    Flight::group('employees', function () {
+        Flight::route('/all_employees', function () {
             Flight::render('all_staff_members', ['title' => "All staff members"], 'saturs');
         }, false, 'all_staff_members');
-        Flight::route('/staff_add_edit(/@staff_id)', function ($staff_id) {
+        Flight::route('/employees_add_edit(/@staff_id)', function ($staff_id) {
             Flight::render('staff_add_edit', ['title' => "Add or edit staff member", "staff_id" => $staff_id], 'saturs');
         }, false, 'staff_add_edit');
-    });
+    },[function() { guard::is_admin(); }]);
 }, [new layout_default(), new guard()]);
 
 Flight::route('/no_access', function () {

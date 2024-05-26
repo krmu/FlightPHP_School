@@ -61,15 +61,15 @@ if (isset($staff_id)) {
     <?php } ?>
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="is_admin" name="is_admin" value="1" <?= ($staff_member['admin'] == 1 ? "checked" : "") ?>>
-        <label class="form-check-label" for="is_admin"><i class="bi bi-dot"></i> Is admin?</label>
+        <label class="form-check-label" for="is_admin">Is admin?</label>
     </div>
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="is_staff" name="is_staff" value="1" <?= ($staff_member['staff'] == 1 ? "checked" : "") ?>>
-        <label class="form-check-label" for="is_admin"><i class="bi bi-dot"></i> Is staff?</label>
+        <label class="form-check-label" for="is_admin">Is staff?</label>
     </div>
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1" <?= ($staff_member['is_active'] == 1 ? "checked" : "") ?>>
-        <label class="form-check-label" for="is_active"><i class="bi bi-dot"></i> Is active?</label>
+        <label class="form-check-label" for="is_active">Is active?</label>
     </div>
     <button type="submit" class="btn btn-outline-primary" name="savedata"><i class="bi bi-floppy"></i> Save</button>
 </form>
