@@ -10,7 +10,7 @@ Courses: Courses module. Editing, deleting, adding
 Students: Students module. Editing, deleting, adding
 
 # Tables:
-
+```
 students
     id (int 11)
     student_no (varchar 20)
@@ -39,7 +39,7 @@ id
     admin (bool)
     surname (varchar 255)
     forename (varchar 255)
-
+```
 # Info
 
 Currently system uses SQLite database, which is located in /app/djanogunidb.db.
