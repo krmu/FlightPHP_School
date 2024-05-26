@@ -1,6 +1,9 @@
 # FlightPHP simple example project
 
 As base example was taken Django project, which was modified to work with FlightPHP.
+This is a simple project, which has a login system, access control system, and some modules.
+This project was created for educational purposes and main goal was to show how to use FlightPHP.
+This projects allows to manage students, courses, and marks.
 Original project can be found here: https://github.com/krmu/djangouni
 
 # Features
