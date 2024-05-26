@@ -29,8 +29,8 @@ marks
     module_code (varchar 8)
     mark (int 11)
     last_update (timestamp ON UPDATE CURRENT_TIMESTAMP)
-    darbinieki_user
-id
+darbinieki_user
+    id (int 11)
     password (varchar 128)
     last_login (datetime)
     username (varchar 255)
