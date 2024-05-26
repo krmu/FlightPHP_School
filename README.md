@@ -46,7 +46,7 @@ Currently system uses SQLite database, which is located in /app/djanogunidb.db.
 There are also sql files for creating tables and inserting data, which can be found in /app/djanogunidb.sql
 
 System has such parts students, courses, marks. Since an already prepared DB was used, courses are called modules in English.
-The system has a login system, which is based on the darbinieki_user table. The password is hashed with the password_hash function.
+The system has a login system, which is based on the darbinieki_user table.
 
 The system has a simple access control system.
 
