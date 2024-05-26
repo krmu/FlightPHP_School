@@ -28,28 +28,28 @@ $grade_information = Flight::db()->fetchRow("SELECT * FROM marks where module_co
 <a href="<?=Flight::create_full_url("students_grades_overview")?> ">Back</a>
 <form action="" method="post">
     <div class="mb-3">
-        <label for="student_no" class="form-label ">Student number</label>
+        <label for="student_no" class="form-label "><i class="bi bi-dot"></i> Student number</label>
         <input type="text" class="form-control" id="student_no" value="<?= $student_no ?>" disabled>
     </div>
     <div class="mb-3">
-        <label for="module_code" class="form-label ">Module code</label>
+        <label for="module_code" class="form-label "><i class="bi bi-dot"></i> Module code</label>
         <input type="text" class="form-control" id="module_code" value="<?= $module_code ?>" disabled>
     </div>
     <div class="mb-3">
-        <label for="module_name" class="form-label ">Module name</label>
+        <label for="module_name" class="form-label "><i class="bi bi-dot"></i> Module name</label>
         <input type="text" class="form-control" id="module_name" value="<?= $module_information['module_name'] ?>" disabled>
     </div>
     <div class="mb-3">
-        <label for="forename" class="form-label ">Student name</label>
+        <label for="forename" class="form-label "><i class="bi bi-dot"></i> Student name</label>
         <input type="text" class="form-control" id="forename" value="<?= $student_information['forename'] ?>" disabled>
     </div>
     <div class="mb-3">
-        <label for="surname" class="form-label ">Student surname</label>
+        <label for="surname" class="form-label "><i class="bi bi-dot"></i> Student surname</label>
         <input type="text" class="form-control" id="surname" value="<?= $student_information['surname'] ?>" disabled>
     </div>
     <div class="mb-3">
-        <label for="mark" class="form-label ">Grade</label>
-        <select class="form-control" id="mark" name="mark">
+        <label for="mark" class="form-label "><i class="bi bi-dot"></i> Grade</label>
+        <select class="form-select" id="mark" name="mark">
             <?php
                 foreach (Flight::allowed_grades(true) as $grade) {
                     echo "<option value='$grade' " . ($grade_information['mark'] == $grade ? "selected" : "") . ">$grade</option>";
@@ -57,8 +57,8 @@ $grade_information = Flight::db()->fetchRow("SELECT * FROM marks where module_co
             ?>
         </select>
     </div>
-    <button type="submit" name="updategrade" class="btn btn-primary">Update data</button>
+    <button type="submit" name="updategrade" class="btn btn-outline-primary"><i class="bi bi-floppy"></i> Update data</button>
 </form>
 <form method="post">
-    <input type="submit" name="delete"  class = "btn btn-danger" value="Delete this grade">
+    <button type="submit" name="delete" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Delete this grade</button>
 </form>

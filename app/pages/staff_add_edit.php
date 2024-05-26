@@ -38,20 +38,20 @@ if (isset($staff_id)) {
 ?>
 <form method="post" class="w-25">
     <div class="form-group">
-        <label for="vards">First name</label>
+        <label for="vards"><i class="bi bi-dot"></i> First name</label>
         <input type="text" class="form-control" id="vards" name="vards" value="<?= $staff_member['vards'] ?>" required>
     </div>
     <div class="form-group">
-        <label for="uzvards">Last name</label>
+        <label for="uzvards"><i class="bi bi-dot"></i> Last name</label>
         <input type="text" class="form-control" id="uzvards" name="uzvards" value="<?= $staff_member['uzvards'] ?>" required>
     </div>
     <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username"><i class="bi bi-dot"></i> Username</label>
         <input type="text" class="form-control" id="username" name="username" value="<?= $staff_member['username'] ?>" required>
     </div>
     <?php if (isset($staff_id)) { ?>
         <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password"><i class="bi bi-dot"></i> Password</label>
             <input type="password" class="form-control" id="password" name="password">
         </div>
     <?php } else { ?>
@@ -61,15 +61,15 @@ if (isset($staff_id)) {
     <?php } ?>
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="is_admin" name="is_admin" value="1" <?= ($staff_member['admin'] == 1 ? "checked" : "") ?>>
-        <label class="form-check-label" for="is_admin">Is admin?</label>
+        <label class="form-check-label" for="is_admin"><i class="bi bi-dot"></i> Is admin?</label>
     </div>
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="is_staff" name="is_staff" value="1" <?= ($staff_member['staff'] == 1 ? "checked" : "") ?>>
-        <label class="form-check-label" for="is_admin">Is staff?</label>
+        <label class="form-check-label" for="is_admin"><i class="bi bi-dot"></i> Is staff?</label>
     </div>
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1" <?= ($staff_member['is_active'] == 1 ? "checked" : "") ?>>
-        <label class="form-check-label" for="is_active">Is active?</label>
+        <label class="form-check-label" for="is_active"><i class="bi bi-dot"></i> Is active?</label>
     </div>
-    <button type="submit" class="btn btn-primary" name="savedata">Save</button>
+    <button type="submit" class="btn btn-outline-primary" name="savedata"><i class="bi bi-floppy"></i> Save</button>
 </form>

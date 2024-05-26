@@ -11,7 +11,7 @@ foreach ($all_grades as $grade) $student_grades[$grade['student_no']][$grade['mo
 ?>
 <table class="table table-bordered text-center">
     <thead>
-        <tr>
+        <tr class="table-active">
             <th>Name</th>
             <th>Surname</th>
             <th>Student number</th>
@@ -27,9 +27,9 @@ foreach ($all_grades as $grade) $student_grades[$grade['student_no']][$grade['mo
         <?php
         foreach ($all_active_students as $student) { ?>
             <tr class="text-center">
-                <td><?= $student['forename'] ?></td>
-                <td><?= $student['surname'] ?></td>
-                <td><?= $student['student_no'] ?></td>
+                <td class="table-light"><?= $student['forename'] ?></td>
+                <td class="table-light"><?= $student['surname'] ?></td>
+                <td class="table-light"><?= $student['student_no'] ?></td>
                 <?php
                 $total_grade = 0;
                 $total_modules = 0;
@@ -52,12 +52,12 @@ foreach ($all_grades as $grade) $student_grades[$grade['student_no']][$grade['mo
                 }
                 if ($total_modules > 0) {
                     if ($has_letter_grade) {
-                        echo "<td class='table-danger'>-</td>";
+                        echo "<td class='table-warning'>-</td>";
                     } else {
-                        echo "<td>" . round($total_grade / $total_modules, 2) . "</td>";
+                        echo "<td class='table-warning'>" . round($total_grade / $total_modules, 2) . "</td>";
                     }
                 } else {
-                    echo "<td>-</td>";
+                    echo "<td class='table-warning'>-</td>";
                 }
                 ?>
             </tr>

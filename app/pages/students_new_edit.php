@@ -30,20 +30,20 @@ if (isset($student_no)) {
 ?>
 <form method="post">
     <div class="mb-3">
-        <label for="forename" class="form-label">Name</label>
+        <label for="forename" class="form-label"><i class="bi bi-dot"></i> Name</label>
         <input type="text" class="form-control" id="forename" name="forename" value="<?= $student_data['forename'] ?>">
     </div>
     <div class="mb-3">
-        <label for="surname" class="form-label">Surname</label>
+        <label for="surname" class="form-label"><i class="bi bi-dot"></i> Surname</label>
         <input type="text" class="form-control" id="surname" name="surname" value="<?= $student_data['surname'] ?>">
     </div>
     <div class="mb-3">
-        <label for="student_no" class="form-label">Student number</label>
-        <input type="text" class="form-control" id="student_no" name="student_no" value="<?= $student_data['student_no'] ?>" <?=($module['student_no'] != "")? 'disabled':''?>>
+        <label for="student_no" class="form-label"><i class="bi bi-dot"></i> Student number</label>
+        <input type="text" class="form-control" id="student_no" name="student_no" value="<?= $student_data['student_no'] ?>" <?=($student_data['student_no'] != "")? 'disabled':''?>>
     </div>
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="aktivs" name="aktivs" value="1" <?= ($student_data['aktivs'] == 1 ? "checked" : "") ?>>
-        <label class="form-check-label" for="aktivs">Active</label>
+        <label class="form-check-label" for="aktivs"><i class="bi bi-dot"></i> Active</label>
     </div>
-    <button type="submit" class="btn btn-primary">Check data</button>
+    <button type="submit" class="btn btn-outline-primary"><i class="bi bi-floppy"></i> Update data</button>
 </form>

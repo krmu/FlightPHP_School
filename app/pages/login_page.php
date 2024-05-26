@@ -7,6 +7,7 @@ if (isset($_POST['auth_button'])) {
         if (isset($user_data['id'])) {
             if (Flight::validate_django_password($user_data['password'], $_POST['password'])) {
                 $_SESSION['USER_ID'] = $user_data['id'];
+                Flight::db()->runQuery("UPDATE darbinieki_user SET last_login = '".date("d.m.Y. H:i:s")."' WHERE id = ?", [$user_data['id']]);
                 //var_dump($user_data);
                 Flight::redirect(Flight::create_full_url('home'));
             } else {

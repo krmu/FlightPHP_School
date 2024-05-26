@@ -1,9 +1,9 @@
 <?php
 $all_staff_members = Flight::db()->fetchAll("SELECT * FROM darbinieki_user");
 ?>
-<table class="table table-striped text-center">
+<table class="table text-center">
     <thead>
-        <tr>
+        <tr class="table-active">
             <th>Staff ID</th>
             <th>First name</th>
             <th>Last name</th>
@@ -12,6 +12,7 @@ $all_staff_members = Flight::db()->fetchAll("SELECT * FROM darbinieki_user");
             <th>Is active?</th>
             <th>Is staff?</th>
             <th>Last login</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -28,7 +29,7 @@ $all_staff_members = Flight::db()->fetchAll("SELECT * FROM darbinieki_user");
                 <td><?= ($staff_member['staff'] == 1 ? "Yes" : "No") ?></td>
                 <td><?= date("d.m.Y. H:i:s", strtotime($staff_member['last_login'])) ?></td>
                 <td>
-                    <a href="<?= Flight::create_full_url('staff_add_edit', ["staff_id" => $staff_member['id']]) ?>">Edit</a>
+                    <a class='btn btn-primary' href="<?= Flight::create_full_url('staff_add_edit', ["staff_id" => $staff_member['id']]) ?>"><i class="bi bi-pencil-square"></i> Edit</a>
                 </td>
             </tr>
         <?php } ?>

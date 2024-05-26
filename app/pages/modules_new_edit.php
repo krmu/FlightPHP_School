@@ -18,19 +18,19 @@ if (isset($module_code)) {
 <div class="container-sm pt-4 text-center">
     <form method="post" class="w-25">
         <div class="form-group">
-            <label for="module_code">Module code</label>
+            <label for="module_code"><i class="bi bi-dot"></i> Module code</label>
             <input type="text" class="form-control" id="module_code" name="module_code" value="<?= $module['module_code'] ?>" required <?=($module['module_code'] != "")? 'disabled':''?>>
         </div>
         <div class="form-group">
-            <label for="module_name">Module name</label>
+            <label for="module_name"><i class="bi bi-dot"></i> Module name</label>
             <input type="text" class="form-control" id="module_name" name="module_name" value="<?= $module['module_name'] ?>" required>
         </div>
         <div class="form-group">
-            <label for="aktivs">Active</label>
-            <select class="form-control" id="aktivs" name="aktivs">
+            <label for="aktivs"><i class="bi bi-dot"></i> Active</label>
+            <select class="form-select" id="aktivs" name="aktivs">
                 <option value="1" <?= ($module['aktivs'] == 1 ? "selected" : "") ?>>Yes</option>
                 <option value="0" <?= ($module['aktivs'] == 0 ? "selected" : "") ?>>No</option>
             </select>
         </div>
-        <input type="submit" class="btn btn-success" name="save_button" value="Save">
+        <input type="submit" class="btn btn-outline-success" name="save_button" value="Save">
     </form>

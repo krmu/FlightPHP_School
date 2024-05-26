@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="<?= Flight::get('main_url') ?>/assets/css/bootstrap.min.css">
     <script src="<?= Flight::get('main_url') ?>/assets/js/jq.js"></script>
     <script src="<?= Flight::get('main_url') ?>/assets/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <title>FlightUNI :: <?= $title ?></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>FlightPHP School :: <?= $title ?></title>
 </head>
 
 <body>
@@ -76,9 +76,16 @@
             }
     ?>
     </nav>
-    <div class="container p-2">
+    <div class="container pt-4">
+        <h3 class="mb-4"><i class="bi bi-dot"></i> <?= $title ?></h3>
+        
         <?= $saturs ?>
     </div>
+    <footer class="footer mt-auto py-3 bg-light navbar fixed-bottom">
+        <div class="container">
+            <span class="text-muted">© <?=date("Y") ?> <a href="https://github.com/krmu/FlightPHP_School">FlightPHP School</a>, Kristaps Muižnieks</span>
+        </div>
+    </footer>
 </body>
 
 </html>
