@@ -68,7 +68,7 @@ Flight::map('allowed_grades', function ($show = false, $grade = null) {
 });
 
 Flight::map('error', function (Throwable $error) {
-    if(!Flight::get_user_data('admin')){
+    if(Flight::get_user_data('admin')){
         echo "<pre>";
             print_r($error);
         echo "</pre>";
