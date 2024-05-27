@@ -12,37 +12,7 @@ Marks: Marks module. Editing, deleting, adding
 Courses: Courses module. Editing, deleting, adding
 Students: Students module. Editing, deleting, adding
 
-# Tables:
-```
-students
-    id (int 11)
-    student_no (varchar 20)
-    surname (varchar 20)
-    forename (varchar 20)
-    active (int 1)
-modules
-    id (int 11)
-    module_code (varchar 8)
-    module_name (varchar 50)
-    can_have_marks (tinyint 1)
-    active (tinyint 1)
-marks
-    id (int 11)
-    student_no (varchar 10)
-    module_code (varchar 8)
-    mark (int 11)
-    last_update (timestamp ON UPDATE CURRENT_TIMESTAMP)
-darbinieki_user
-    id (int 11)
-    password (varchar 128)
-    last_login (datetime)
-    username (varchar 255)
-    is_active (bool)
-    staff (bool)
-    admin (bool)
-    surname (varchar 255)
-    forename (varchar 255)
-```
+
 # Info
 
 Currently system uses SQLite database, which is located in /app/djanogunidb.db.
@@ -71,8 +41,20 @@ teacher : teacher
 
 # Images
 
-Will be added later.
-
+## Students averages table
+![Averages](/gh_media/all_averages.png "Title")
+## All modules
+![All modules](/gh_media/all_modules.png "Title")
+## Add module
+![Add module](/gh_media/add_module.png "Title")
+## All staff members
+![All staff](/gh_media/all_staff.png "Title")
+## All students
+![All students](/gh_media/all_students.png "Title")
+## Edit student
+![Edit students](/gh_media/edit_student.png "Title")
+## Edit grade
+![Edit students](/gh_media/edit_grade.png "Title")
 # Project structure
 
 ```

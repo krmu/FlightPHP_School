@@ -1,11 +1,4 @@
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "marks" (
-	"id"	integer NOT NULL,
-	"student_no"	varchar(10) NOT NULL,
-	"module_code"	varchar(8) NOT NULL,
-	"mark"	integer NOT NULL,
-	PRIMARY KEY("id" AUTOINCREMENT)
-);
 CREATE TABLE IF NOT EXISTS "modules" (
 	"id"	integer NOT NULL,
 	"module_code"	varchar(10) NOT NULL UNIQUE,
@@ -45,6 +38,15 @@ CREATE TABLE IF NOT EXISTS "darbinieki_user" (
 	"admin"	bool NOT NULL,
 	"uzvards"	varchar(255) NOT NULL,
 	"vards"	varchar(255) NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "marks" (
+	"id"	integer NOT NULL,
+	"student_no"	varchar(10) NOT NULL,
+	"module_code"	varchar(8) NOT NULL,
+	"mark"	integer NOT NULL,
+	"last_staff"	INTEGER,
+	"last_update"	TEXT,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
 CREATE UNIQUE INDEX IF NOT EXISTS "modules_id_module_code_0ca248ac_uniq" ON "modules" (

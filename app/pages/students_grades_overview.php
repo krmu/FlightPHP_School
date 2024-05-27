@@ -5,7 +5,7 @@ $all_active_modules = Flight::db()->fetchAll("SELECT * FROM modules where aktivs
 
 // Optimization needed
 $student_grades = array();
-$all_grades = Flight::db()->fetchAll("SELECT * FROM marks");
+$all_grades = Flight::db()->fetchAll("SELECT * FROM marks where deleted = 0 ");
 foreach ($all_grades as $grade) $student_grades[$grade['student_no']][$grade['module_code']] = $grade['mark'];
 $subjects_averages = array();
 ?>

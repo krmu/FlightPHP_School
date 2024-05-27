@@ -90,7 +90,7 @@
         
         <?= $saturs ?>
     </div>
-    <footer class="footer mt-auto py-3 bg-light navbar fixed-bottom">
+    <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
             <span class="text-muted">© <?=date("Y") ?> <a href="https://github.com/krmu/FlightPHP_School">FlightPHP School</a>, Kristaps Muižnieks</span>
         </div>
