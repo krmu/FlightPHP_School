@@ -39,7 +39,23 @@ Flight::group('/', function () {
             Flight::render('staff_add_edit', ['title' => "Add or edit staff member", "staff_id" => $staff_id], 'saturs');
         }, false, 'staff_add_edit');
     },[function() { guard::is_admin(); }]);
+    
 }, [new layout_default(), new guard()]);
+
+Flight::group('/api', function () {
+    Flight::route('/system_stats', function () {
+        $student_count = Flight::db()->fetchField("SELECT COUNT(*) FROM students");
+        $modules_count = Flight::db()->fetchField("SELECT COUNT(*) FROM modules");
+        $marks_count = Flight::db()->fetchField("SELECT COUNT(*) FROM marks");
+        $staff_count = Flight::db()->fetchField("SELECT COUNT(*) FROM darbinieki_user");
+        echo Flight::json(['students' => $student_count, 'modules' => $modules_count, 'marks' => $marks_count, 'staff' => $staff_count]);
+    }, false, 'api_system_stats');
+    
+},[ new api_guard()]);
+
+
+
+
 
 Flight::route('/no_access', function () {
     Flight::render('no_access', ['title' => "No access"], 'saturs');

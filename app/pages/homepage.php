@@ -8,14 +8,12 @@
               <div class="card-body p-4">
                 <div class="row">
                   <div class="col-8">
-                    <?php
-                    $student_count = Flight::db()->fetchField("SELECT COUNT(*) FROM students");
-                    $modules_count = Flight::db()->fetchField("SELECT COUNT(*) FROM modules");
-                    $marks_count = Flight::db()->fetchField("SELECT COUNT(*) FROM marks");
-                    $staff_count = Flight::db()->fetchField("SELECT COUNT(*) FROM darbinieki_user");
-                    ?>
                     <h5 class="card-title widget-card-title mb-3">Students</h5>
-                    <h4 class="card-subtitle text-body-secondary m-0"><?= $student_count ?></h4>
+                    <h4 class="card-subtitle text-body-secondary m-0" id="students_count">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </h4>
                   </div>
                   <div class="col-4">
                     <div class="d-flex justify-content-end">
@@ -34,7 +32,11 @@
                 <div class="row">
                   <div class="col-8">
                     <h5 class="card-title widget-card-title mb-3">Modules</h5>
-                    <h4 class="card-subtitle text-body-secondary m-0"><?= $modules_count ?></h4>
+                    <h4 class="card-subtitle text-body-secondary m-0" id="modules_count">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </h4>
                   </div>
                   <div class="col-4">
                     <div class="d-flex justify-content-end">
@@ -53,7 +55,11 @@
                 <div class="row">
                   <div class="col-8">
                     <h5 class="card-title widget-card-title mb-3">Marks</h5>
-                    <h4 class="card-subtitle text-body-secondary m-0"><?= $marks_count ?></h4>
+                    <h4 class="card-subtitle text-body-secondary m-0" id="marks_count">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </h4>
                   </div>
                   <div class="col-4">
                     <div class="d-flex justify-content-end">
@@ -72,7 +78,11 @@
                 <div class="row">
                   <div class="col-8">
                     <h5 class="card-title widget-card-title mb-3">Staff members</h5>
-                    <h4 class="card-subtitle text-body-secondary m-0"><?= $staff_count ?></h4>
+                    <h4 class="card-subtitle text-body-secondary m-0" id="staff_count">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </h4>
                   </div>
                   <div class="col-4">
                     <div class="d-flex justify-content-end">
@@ -90,3 +100,13 @@
     </div>
   </div>
 </section>
+<script>
+  $(document).ready(function() {
+    $.post("<?= Flight::create_full_url('api_system_stats') ?> ", function(data) {
+      $("#modules_count").html(data.modules);
+      $("#staff_count").html(data.staff);
+      $("#marks_count").html(data.marks);
+      $("#students_count").html(data.students);
+    });
+  });
+</script>
