@@ -16,6 +16,7 @@ if (isset($module_code)) {
 }
 ?>
 <div class="container-sm pt-4 text-center">
+    <?php Flight::csfr(); ?>
     <form method="post" class="w-25">
         <div class="form-group">
             <label for="module_code"><i class="bi bi-dot"></i> Module code</label>

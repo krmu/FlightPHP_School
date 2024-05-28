@@ -51,7 +51,9 @@ Flight::map('get_user_data', function (string $field) {
         return false;
     }
 });
-
+Flight::map('csfr', function () {
+    echo "<input type='hidden' name='token' value='" . $_SESSION['csrf-token'] . "'>";
+});
 // All allowed grades in the system
 
 Flight::map('allowed_grades', function ($show = false, $grade = null) {

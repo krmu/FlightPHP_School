@@ -29,6 +29,7 @@ if (isset($student_no)) {
 
 ?>
 <form method="post">
+    <?php Flight::csfr(); ?>
     <div class="mb-3">
         <label for="forename" class="form-label"><i class="bi bi-dot"></i> Name</label>
         <input type="text" class="form-control" id="forename" name="forename" value="<?= $student_data['forename'] ?>">

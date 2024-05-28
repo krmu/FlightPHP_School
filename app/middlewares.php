@@ -7,6 +7,12 @@ class guard
             Flight::redirect(Flight::create_full_url('login'));
             exit();
         }
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            if(isset($_POST['token']) != $_SESSION['csrf-token']){
+                Flight::halt(403, 'Access denied, invalid token.');
+                exit();
+            }
+        }
     }
     public static function is_admin()
     {

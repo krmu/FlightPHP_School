@@ -25,7 +25,6 @@ $module_information = Flight::db()->fetchRow("SELECT * FROM modules where module
 $student_information = Flight::db()->fetchRow("SELECT * FROM students where student_no = ?", array($student_no));
 $grade_information = Flight::db()->fetchRow("SELECT marks.id as grid,mark,last_update,uzvards,vards FROM marks left join darbinieki_user on marks.last_staff = darbinieki_user.id where module_code = ? and student_no = ? and deleted = 0", array($module_code, $student_no));
 if(isset($grade_information['mark'])){
-    echo "<div class='alert alert-info'> Last updated by: ".$grade_information['vards']." ".$grade_information['uzvards']." on ".date("d.m.Y. H:i:s", $grade_information['last_update'])."</div>";
     ?>
     <form method="post">
         <input type="hidden" name="grade_id" value="<?= $grade_information['grid'] ?>">
@@ -36,52 +35,64 @@ if(isset($grade_information['mark'])){
 
 ?>
 <a href="<?=Flight::create_full_url("students_grades_overview")?> ">Back</a>
-<form action="" method="post">
-    <?php 
-        if(isset($grade_information['mark'])){ echo "<input type='hidden' name='grade_id' value='".$grade_information['grid']."'>"; }
-    ?>
-    <div class="mb-3">
-        <label for="student_no" class="form-label "><i class="bi bi-dot"></i> Student number</label>
-        <input type="text" class="form-control" id="student_no" value="<?= $student_no ?>" disabled>
-    </div>
-    <div class="mb-3">
-        <label for="module_code" class="form-label "><i class="bi bi-dot"></i> Module code</label>
-        <input type="text" class="form-control" id="module_code" value="<?= $module_code ?>" disabled>
-    </div>
-    <div class="mb-3">
-        <label for="module_name" class="form-label "><i class="bi bi-dot"></i> Module name</label>
-        <input type="text" class="form-control" id="module_name" value="<?= $module_information['module_name'] ?>" disabled>
-    </div>
-    <div class="mb-3">
-        <label for="forename" class="form-label "><i class="bi bi-dot"></i> Student name</label>
-        <input type="text" class="form-control" id="forename" value="<?= $student_information['forename'] ?>" disabled>
-    </div>
-    <div class="mb-3">
-        <label for="surname" class="form-label "><i class="bi bi-dot"></i> Student surname</label>
-        <input type="text" class="form-control" id="surname" value="<?= $student_information['surname'] ?>" disabled>
-    </div>
-    <div class="mb-3">
-        <label for="mark" class="form-label "><i class="bi bi-dot"></i> Grade</label>
-        <select class="form-select" id="mark" name="mark">
-            <?php
-                foreach (Flight::allowed_grades(true) as $grade) {
-                    echo "<option value='$grade' " . ($grade_information['mark'] == $grade ? "selected" : "") . ">$grade</option>";
-                }
+<div class="row">
+    <div class="col-md-6">
+        <form action="" method="post">
+            <?php 
+                if(isset($grade_information['mark'])){ echo "<input type='hidden' name='grade_id' value='".$grade_information['grid']."'>"; }
+            Flight::csfr();
             ?>
-        </select>
+            <div class="mb-3">
+                <label for="student_no" class="form-label "><i class="bi bi-dot"></i> Student number</label>
+                <input type="text" class="form-control" id="student_no" value="<?= $student_no ?>" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="module_code" class="form-label "><i class="bi bi-dot"></i> Module code</label>
+                <input type="text" class="form-control" id="module_code" value="<?= $module_code ?>" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="module_name" class="form-label "><i class="bi bi-dot"></i> Module name</label>
+                <input type="text" class="form-control" id="module_name" value="<?= $module_information['module_name'] ?>" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="forename" class="form-label "><i class="bi bi-dot"></i> Student name</label>
+                <input type="text" class="form-control" id="forename" value="<?= $student_information['forename'] ?>" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="surname" class="form-label "><i class="bi bi-dot"></i> Student surname</label>
+                <input type="text" class="form-control" id="surname" value="<?= $student_information['surname'] ?>" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="mark" class="form-label "><i class="bi bi-dot"></i> Grade</label>
+                <select class="form-select" id="mark" name="mark">
+                    <?php
+                        foreach (Flight::allowed_grades(true) as $grade) {
+                            echo "<option value='$grade' " . ($grade_information['mark'] == $grade ? "selected" : "") . ">$grade</option>";
+                        }
+                    ?>
+                </select>
+            </div>
+            <button type="submit" name="updategrade" class="btn btn-outline-primary"><i class="bi bi-floppy"></i> Update data</button>
+        </form>
     </div>
-    <button type="submit" name="updategrade" class="btn btn-outline-primary"><i class="bi bi-floppy"></i> Update data</button>
-</form>
-<h3>Grade history (Deleted grades)</h3>
-<?php
+    <div class="col-md-6">
+    <h3>Grade history</h3>
+        <?php
 
-$grade_history = Flight::db()->fetchAll("SELECT mark,last_update,uzvards,vards FROM marks left join darbinieki_user on marks.last_staff = darbinieki_user.id where deleted = 1  and module_code = ? and student_no = ?", array($module_code, $student_no));
+        $grade_history = Flight::db()->fetchAll("SELECT mark,last_update,uzvards,vards FROM marks left join darbinieki_user on marks.last_staff = darbinieki_user.id where deleted = 1  and module_code = ? and student_no = ? order by last_update desc", array($module_code, $student_no));
+        echo "<table class='table table-bordered'>";
+        echo "<thead><tr><th>Grade</th><th>Last updated by</th><th>Last updated on</th></tr></thead>";
+        echo "<tbody>";
+            echo "<tr><td>" . $grade_information['mark'] . " <b>(Current)</b></td><td>" . $grade_information['vards'] . " " . $grade_information['uzvards'] . "</td><td>" . date("d.m.Y. H:i:s", $grade_information['last_update']) . "</td></tr>";
+            foreach ($grade_history as $grade) {
+                echo "<tr><td>" . $grade['mark'] . "</td><td>" . $grade['vards'] . " " . $grade['uzvards'] . "</td><td>" . date("d.m.Y. H:i:s", $grade['last_update']) . "</td></tr>";
+            }
+        echo "</tbody>";
+        echo "</table>";
+ 
+             
+        ?>
+    </div>
+</div>
 
-echo "<table class='table table-bordered'>";
-echo "<thead><tr><th>Grade</th><th>Last updated by</th><th>Last updated on</th></tr></thead>";
-echo "<tbody>";
-foreach ($grade_history as $grade) {
-    echo "<tr><td>" . $grade['mark'] . "</td><td>" . $grade['vards'] . " " . $grade['uzvards'] . "</td><td>" . date("d.m.Y. H:i:s", $grade['last_update']) . "</td></tr>";
-}
-echo "</tbody>";
-echo "</table>";
+ 

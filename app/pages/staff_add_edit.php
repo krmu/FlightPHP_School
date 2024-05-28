@@ -37,6 +37,7 @@ if (isset($staff_id)) {
 
 ?>
 <form method="post" class="w-25">
+    <?php Flight::csfr(); ?>
     <div class="form-group">
         <label for="vards"><i class="bi bi-dot"></i> First name</label>
         <input type="text" class="form-control" id="vards" name="vards" value="<?= $staff_member['vards'] ?>" required>
