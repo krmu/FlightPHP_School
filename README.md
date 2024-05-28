@@ -8,7 +8,7 @@ Original project can be found here: https://github.com/krmu/djangouni
 
 # Features
 Web: Main project, all addresses
-Marks: Marks module. Editing, deleting, adding
+Marks: Marks module. Editing, adding, grade history
 Courses: Courses module. Editing, deleting, adding
 Students: Students module. Editing, deleting, adding
 
