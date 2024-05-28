@@ -35,7 +35,7 @@ if(isset($grade_information['mark'])){
         <form action="" method="post">
             <?php 
                 if(isset($grade_information['mark'])){ echo "<input type='hidden' name='grade_id' value='".$grade_information['grid']."'>"; }
-            Flight::csfr();
+                Flight::csfr();
             ?>
             <div class="mb-3">
                 <label for="student_no" class="form-label "><i class="bi bi-dot"></i> Student number</label>
@@ -61,9 +61,8 @@ if(isset($grade_information['mark'])){
                 <label for="mark" class="form-label "><i class="bi bi-dot"></i> Grade</label>
                 <select class="form-select" id="mark" name="mark">
                     <?php
-                        foreach (Flight::allowed_grades(true) as $grade) {
-                            echo "<option value='$grade' " . ($grade_information['mark'] == $grade ? "selected" : "") . ">$grade</option>";
-                        }
+                        echo "<option selected disabled>Select grade</option>";
+                        foreach (Flight::allowed_grades(true) as $grade) echo "<option value='$grade' " . ($grade_information['mark'] == $grade ? "selected" : "") . ">$grade</option>";
                     ?>
                 </select>
             </div>
