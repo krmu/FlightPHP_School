@@ -34,3 +34,4 @@ $all_staff_members = Flight::db()->fetchAll("SELECT * FROM darbinieki_user");
             </tr>
         <?php } ?>
     </tbody>
+</table>

@@ -40,7 +40,7 @@ if (isset($student_no)) {
     </div>
     <div class="mb-3">
         <label for="student_no" class="form-label"><i class="bi bi-dot"></i> Student number</label>
-        <input type="text" class="form-control" id="student_no" name="student_no" value="<?= $student_data['student_no'] ?>" <?=($student_data['student_no'] != "")? 'disabled':''?>>
+        <input type="text" class="form-control" id="student_no" name="student_no" value="<?= $student_data['student_no'] ?>" <?=($student_data['student_no'] != "")? 'readonly':''?>>
     </div>
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="aktivs" name="aktivs" value="1" <?= ($student_data['aktivs'] == 1 ? "checked" : "") ?>>

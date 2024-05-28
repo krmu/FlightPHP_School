@@ -20,3 +20,5 @@ foreach ($all_active_students as $student) {
     echo "<td><a class='btn btn-primary' href='" . Flight::create_full_url('students_new_edit', ["student_no" => $student['student_no']]) . "'><i class='bi bi-pencil-square'></i> Edit student data</a></td>";
     echo "</tr>";
 }
+echo "</tbody>";
+echo "</table>";
