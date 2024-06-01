@@ -1,6 +1,4 @@
 <?php
-$students = new Students();
-$all_active_students = $students->orderBy('forename desc')->findAll();
 echo "<table class='table table-bordered text-center'>";
 echo "<thead>";
 echo "<tr class='table-active'>";
@@ -11,15 +9,26 @@ echo "<th>Active</th>";
 echo "<th>Actions</th>";
 echo "</tr>";
 echo "</thead>";
-echo "<tbody>";
-foreach ($all_active_students as $student) {
-    echo "<tr>";
-    echo "<td>" . $student->forename . "</td>";
-    echo "<td>" . $student->surname . "</td>";
-    echo "<td>" . $student->student_no . "</td>";
-    echo "<td>" . ($student->aktivs == 1 ? "Yes" : "No") . "</td>";
-    echo "<td><a class='btn btn-primary' href='" . Flight::create_full_url('students_new_edit', ["student_no" => $student->student_no]) . "'><i class='bi bi-pencil-square'></i> Edit student data</a></td>";
-    echo "</tr>";
-}
-echo "</tbody>";
-echo "</table>";
+echo "<tbody id='table_body'></tbody></table>";
+?>
+
+<script>
+$(document).ready(function() {
+    $.post("<?= Flight::create_full_url('api_students_get_all_list') ?>").done(
+        function(response){
+            if(response.length == 0){
+                Swal.fire("No students found", "No students found in the database", "info");
+            }else{
+                response.forEach(element => {
+                    $('#table_body').append('<tr><td>' + element.forename + '</td><td>' + element.surname + '</td><td>' + element.student_no + '</td><td>' + (element.aktivs == 1 ? 'Yes' : 'No') + '</td><td><a class="btn btn-primary" href="' + element.edit_url + '"><i class="bi bi-pencil-square"></i> Edit</a></td></tr>');
+                });
+            }
+        }
+    ).fail(
+        function(jqXHR, textStatus, errorThrown) {
+            Swal.fire("Error!", "Error occured while fetching data from server."+"("+jqXHR.status+")", "error");
+        }
+    );
+});
+</script>
+<?php 

@@ -54,11 +54,29 @@ Flight::group('/api', function () {
         $staff_count = $staff->select('COUNT(*) as count')->find()->count;
         return Flight::json(['students' => $student_count, 'modules' => $modules_count, 'marks' => $marks_count, 'staff' => $staff_count]);
     }, false, 'api_system_stats');
-    
+    Flight::group('/modules', function () {
+        Flight::route('/get_all_list', function () {
+            $modules = new Modules();
+            $all_modules = $modules->select('module_code, module_name, aktivs')->findAll();
+            $return_array = [];
+            foreach ($all_modules as $module) {
+                $return_array[] = ['module_code' => $module->module_code, 'module_name' => $module->module_name, 'aktivs' => $module->aktivs, "edit_url" => Flight::create_full_url('modules_new_edit', ['module_code' => $module->module_code])];
+            }
+            return Flight::json($return_array);
+        }, false, 'api_modules_get_all_list');
+    },);
+    Flight::group('/students', function () {
+        Flight::route('/get_all_list', function () {
+            $students = new Students();
+            $all_students = $students->select('forename, surname, student_no, aktivs')->findAll();
+            $return_array = [];
+            foreach ($all_students as $student) {
+                $return_array[] = ['forename' => $student->forename, 'surname' => $student->surname, 'student_no' => $student->student_no, 'aktivs' => $student->aktivs, "edit_url" => Flight::create_full_url('students_new_edit', ['student_no' => $student->student_no])];
+            }
+            return Flight::json($return_array);
+        }, false, 'api_students_get_all_list');
+    },[function() { guard::is_staff(true); }]);
 },[ new api_guard()]);
-
-
-
 
 
 Flight::route('/no_access', function () {

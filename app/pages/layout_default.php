@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="<?= Flight::get('main_url') ?>/assets/css/bootstrap.min.css">
     <script src="<?= Flight::get('main_url') ?>/assets/js/jq.js"></script>
     <script src="<?= Flight::get('main_url') ?>/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= Flight::get('main_url') ?>/assets/js/swal.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>FlightPHP School :: <?= $title ?></title>
     <script>
