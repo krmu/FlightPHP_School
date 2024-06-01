@@ -3,3 +3,5 @@ composer.phar
 
 app/djanogunidb.db
 .vscode/settings.json
+app/djanogunidb.db
+composer.lock

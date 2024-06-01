@@ -44,11 +44,15 @@ Flight::group('/', function () {
 
 Flight::group('/api', function () {
     Flight::route('/system_stats', function () {
-        $student_count = Flight::db()->fetchField("SELECT COUNT(*) FROM students");
-        $modules_count = Flight::db()->fetchField("SELECT COUNT(*) FROM modules");
-        $marks_count = Flight::db()->fetchField("SELECT COUNT(*) FROM marks");
-        $staff_count = Flight::db()->fetchField("SELECT COUNT(*) FROM darbinieki_user");
-        echo Flight::json(['students' => $student_count, 'modules' => $modules_count, 'marks' => $marks_count, 'staff' => $staff_count]);
+        $students = new Students();
+        $marks = new Marks();
+        $modules = new Modules();
+        $staff = new Staff();
+        $student_count = $students->select('COUNT(*) as count')->find()->count;
+        $modules_count = $modules->select('COUNT(*) as count')->find()->count;
+        $marks_count = $marks->select('COUNT(*) as count')->find()->count;
+        $staff_count = $staff->select('COUNT(*) as count')->find()->count;
+        return Flight::json(['students' => $student_count, 'modules' => $modules_count, 'marks' => $marks_count, 'staff' => $staff_count]);
     }, false, 'api_system_stats');
     
 },[ new api_guard()]);
