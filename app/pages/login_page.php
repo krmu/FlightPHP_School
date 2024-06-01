@@ -1,15 +1,18 @@
 <?php
+
+
 if (isset($_POST['auth_button'])) {
     if (!isset($_POST['username']) || !isset($_POST['password'])) {
         echo "<div class='alert alert-danger'>Please fill in all fields!</div>";
     } else {
-        $user_data = Flight::db()->fetchRow("SELECT id,password FROM darbinieki_user WHERE username = ?", [$_POST['username']]);
-        if (isset($user_data['id'])) {
-            if (Flight::validate_django_password($user_data['password'], $_POST['password'])) {
-                $_SESSION['USER_ID'] = $user_data['id'];
+        $staff = new Staff();
+        $staff->select('id','password')->eq('username', $_POST['username'])->find();
+        if (isset($staff->id)) {
+            if (Flight::validate_django_password($staff->password, $_POST['password'])) {
+                $_SESSION['USER_ID'] = $staff->id;
                 $_SESSION['csrf-token'] = bin2hex(random_bytes(128));
-                Flight::db()->runQuery("UPDATE darbinieki_user SET last_login = '".date("d.m.Y. H:i:s")."' WHERE id = ?", [$user_data['id']]);
-                //var_dump($user_data);
+                $staff->last_login = date("d.m.Y. H:i:s");
+                $staff->save();
                 Flight::redirect(Flight::create_full_url('home'));
             } else {
                 echo "<div class='alert alert-danger'>Incorrect password!</div>";

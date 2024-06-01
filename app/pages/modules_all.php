@@ -1,6 +1,7 @@
 <?php
 
-$all_modules = Flight::db()->fetchAll("SELECT * FROM modules");
+$modules = new Modules();
+$all_modules = $modules->findAll();
 echo "<table class='table table-bordered text-center'>";
 echo "<thead>";
 echo "<tr class='table-active'>";
@@ -13,10 +14,10 @@ echo "</thead>";
 echo "<tbody>";
 foreach ($all_modules as $module) {
     echo "<tr>";
-    echo "<td>" . $module['module_code'] . "</td>";
-    echo "<td>" . $module['module_name'] . "</td>";
-    echo "<td>" . ($module['aktivs'] == 1 ? "Yes" : "No") . "</td>";
-    echo "<td><a class='btn btn-primary' href='" . Flight::create_full_url('modules_new_edit', ['module_code' => $module['module_code']]) . "'><i class='bi bi-pencil-square'></i> Edit</a></td>";
+    echo "<td>" . $module -> module_code . "</td>";
+    echo "<td>" . $module -> module_name . "</td>";
+    echo "<td>" . ($module->aktivs == 1 ? "Yes" : "No") . "</td>";
+    echo "<td><a class='btn btn-primary' href='" . Flight::create_full_url('modules_new_edit', ['module_code' => $module->module_code]) . "'><i class='bi bi-pencil-square'></i> Edit</a></td>";
     echo "</tr>";
 }
 echo "</tbody>";
