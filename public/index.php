@@ -12,7 +12,8 @@ try {
 } catch (PDOException $e) {
     die("Can't connect to database.");
 }
-require_once '../app/database.php';
+require_once '../app/database/autoload.php';
+
 require_once '../app/routes.php';
 
 Flight::start();
